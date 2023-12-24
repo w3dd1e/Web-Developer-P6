@@ -1,4 +1,6 @@
 const express = require("express");
+const mongodb = require("./app/database/mongodb");
+
 const app = express();
 
 app.use((req, res, next) => {
