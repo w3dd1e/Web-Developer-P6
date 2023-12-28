@@ -1,6 +1,7 @@
 const express = require("express");
 const mongodb = require("./app/database/mongodb");
 const userRoutes = require("../back/app/routes/user");
+const sauceRoutes = require("../back/app/routes/sauce");
 
 const app = express();
 app.use(express.json());
@@ -19,5 +20,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/auth", userRoutes);
+app.get("/api/sauces", sauceRoutes);
 
 module.exports = app;
