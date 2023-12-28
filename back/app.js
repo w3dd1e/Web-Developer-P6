@@ -1,7 +1,9 @@
 const express = require("express");
 const mongodb = require("./app/database/mongodb");
+const userRoutes = require("../back/app/routes/user");
 
 const app = express();
+app.use(express.json());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -16,8 +18,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.send("<p>Hello World!</p>");
-});
+app.use("/api/auth", userRoutes);
 
 module.exports = app;
