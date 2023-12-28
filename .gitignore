@@ -43,3 +43,4 @@ testem.log
 Thumbs.db
 back/.env
 /back/.env
+.env
