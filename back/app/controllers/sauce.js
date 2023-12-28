@@ -28,14 +28,16 @@ exports.getOneSauce = (req, res, next) => {
 };
 
 exports.createSauce = (req, res, next) => {
+  req.body.sauce = JSON.parse(req.body.sauce);
+  const url = req.protocol + "://" + req.get("host");
   const sauce = new Sauce({
-    userid: req.body.userid,
-    name: req.body.name,
-    manufacturer: req.body.manufacturer,
-    description: req.body.description,
-    mainPepper: req.body.mainPepper,
-    imageURL: req.body.imageURL,
-    heat: req.body.heat,
+    userid: req.body.sauce.userid,
+    name: req.body.sauce.name,
+    manufacturer: req.body.sauce.manufacturer,
+    description: req.body.sauce.description,
+    mainPepper: req.body.sauce.mainPepper,
+    imageUrl: url + "/images/" + req.file.filename,
+    heat: req.body.sauce.heat,
   });
   sauce
     .save()
@@ -52,20 +54,21 @@ exports.createSauce = (req, res, next) => {
 };
 
 exports.updateSauce = (req, res, next) => {
+  req.body.sauce = JSON.parse(req.body.sauce);
+  const url = req.protocol + "://" + req.get("host");
   const sauce = new Sauce({
-    /* 
-        TODO: Update the following fields for sauce model:
-         _id: req.params.id,
-          title: req.body.title,
-          description: req.body.description,
-          imageUrl: req.body.imageUrl,
-          price: req.body.price,
-          userId: req.body.userId */
+    userid: req.body.sauce.userid,
+    name: req.body.sauce.name,
+    manufacturer: req.body.sauce.manufacturer,
+    description: req.body.sauce.description,
+    mainPepper: req.body.sauce.mainPepper,
+    imageUrl: url + "/images/" + req.file.filename,
+    heat: req.body.sauce.heat,
   });
   Sauce.updateOne({ _id: req.params.id }, sauce)
     .then(() => {
       res.status(201).json({
-        message: "Thing updated successfully!",
+        message: "Sauce updated successfully!",
       });
     })
     .catch((error) => {
