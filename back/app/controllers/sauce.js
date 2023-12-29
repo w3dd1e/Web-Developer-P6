@@ -36,7 +36,7 @@ exports.createSauce = (req, res, next) => {
     manufacturer: req.body.sauce.manufacturer,
     description: req.body.sauce.description,
     mainPepper: req.body.sauce.mainPepper,
-    imageUrl: url + "/images/" + req.file.filename,
+    imageUrl: url + "/uploads/" + req.file.filename,
     heat: req.body.sauce.heat,
   });
   sauce
@@ -64,7 +64,7 @@ exports.updateSauce = (req, res, next) => {
       manufacturer: req.body.sauce.manufacturer,
       description: req.body.sauce.description,
       mainPepper: req.body.sauce.mainPepper,
-      imageUrl: url + "/images/" + req.file.filename,
+      imageUrl: url + "/uploads/" + req.file.filename,
       heat: req.body.sauce.heat,
     };
   } else {
@@ -93,8 +93,8 @@ exports.updateSauce = (req, res, next) => {
 
 exports.deleteSauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id }).then((sauce) => {
-    const filename = sauce.imageUrl.split("/images/")[1];
-    fs.unlink("images/" + filename, () => {
+    const filename = sauce.imageUrl.split("/uploads/")[1];
+    fs.unlink("uploads/" + filename, () => {
       Sauce.deleteOne({ _id: req.params.id })
         .then(() => {
           res.status(200).json({
