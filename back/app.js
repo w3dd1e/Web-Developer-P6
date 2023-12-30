@@ -1,8 +1,8 @@
 const express = require("express");
 const mongodb = require("./app/database/mongodb");
+const path = require("path");
 const userRoutes = require("../back/app/routes/user");
 const sauceRoutes = require("../back/app/routes/sauce");
-const path = require("path");
 
 const app = express();
 app.use(express.json());
@@ -19,9 +19,10 @@ app.use((req, res, next) => {
   );
   next();
 });
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/auth", userRoutes);
 app.get("/api/sauces", sauceRoutes);
-app.use("/images", express.static(path.join(__dirname, "images")));
+app.post("/api/sauces", sauceRoutes);
 
 module.exports = app;
