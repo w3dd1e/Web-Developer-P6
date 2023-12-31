@@ -5,9 +5,9 @@ exports.createSauce = (req, res, next) => {
   req.body.sauce = JSON.parse(req.body.sauce);
   const url = req.protocol + "://" + req.get("host");
   const sauce = new Sauce({
-    userid: req.body.sauce.userid,
+    userId: req.body.sauce.userId,
     name: req.body.sauce.name,
-    manufacturer: req.body.sauce.mancufacturer,
+    manufacturer: req.body.sauce.manufacturer,
     description: req.body.sauce.description,
     mainPepper: req.body.sauce.mainPepper,
     imageUrl: url + "/images/" + req.file.filename,
