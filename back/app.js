@@ -23,6 +23,7 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/auth", userRoutes);
 app.get("/api/sauces", sauceRoutes);
+app.get("/api/sauces/:id", sauceRoutes);
 app.post("/api/sauces", sauceRoutes);
 
 module.exports = app;
