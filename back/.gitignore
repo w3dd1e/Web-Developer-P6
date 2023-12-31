@@ -3,3 +3,4 @@ node_modules
 
 #Environment Variables
 .env
+back/images
