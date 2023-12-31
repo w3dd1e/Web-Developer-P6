@@ -12,6 +12,10 @@ exports.createSauce = (req, res, next) => {
     mainPepper: req.body.sauce.mainPepper,
     imageUrl: url + "/images/" + req.file.filename,
     heat: req.body.sauce.heat,
+    likes: 0,
+    dislikes: 0,
+    usersLiked: [],
+    usersDisliked: [],
   });
   sauce
     .save()
@@ -50,7 +54,7 @@ exports.updateSauce = (req, res, next) => {
     req.body.sauce = JSON.parse(req.body.sauce);
     sauce = {
       _id: req.params.id,
-      userid: req.body.sauce.userid,
+      userId: req.body.sauce.userId,
       name: req.body.sauce.name,
       manufacturer: req.body.sauce.manufacturer,
       description: req.body.sauce.description,
@@ -60,7 +64,7 @@ exports.updateSauce = (req, res, next) => {
     };
   } else {
     sauce = {
-      userid: req.body.userid,
+      userId: req.body.userid,
       name: req.body.name,
       manufacturer: req.body.manufacturer,
       description: req.body.description,
@@ -93,6 +97,8 @@ exports.deleteSauce = (req, res, next) => {
           });
         })
         .catch((error) => {
+          console.log(error);
+
           res.status(400).json({
             error: error,
           });
