@@ -28,6 +28,6 @@ app.get("/api/sauces/:id", sauceRoutes);
 app.post("/api/sauces", sauceRoutes);
 app.delete("/api/sauces/:id", sauceRoutes);
 app.put("/api/sauces/:id", sauceRoutes);
-app.put("/api/sauces/:id/like", likeRoutes);
+app.post("/api/sauces/:id/like", likeRoutes);
 
 module.exports = app;
