@@ -1,7 +1,9 @@
 //HTTP Server
+// HTTPS would be better here, but would require an SSL certificate
 const http = require("http");
 const app = require("./app");
 
+//Railguard to make sure port is a number
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
 
@@ -16,6 +18,7 @@ const normalizePort = (val) => {
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
+//Handle errors from HTTP
 const errorHandler = (error) => {
   if (error.syscall !== "listen") {
     throw error;
