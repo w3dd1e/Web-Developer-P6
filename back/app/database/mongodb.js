@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+//Dotenv required for Mongo URI, evironment variables
 const dotenv = require("dotenv").config();
 
 const mongoURI = process.env.MONGO_URI;

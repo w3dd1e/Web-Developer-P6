@@ -1,6 +1,7 @@
 const express = require("express");
 const mongodb = require("./app/database/mongodb");
 const path = require("path");
+
 const userRoutes = require("../back/app/routes/user");
 const sauceRoutes = require("../back/app/routes/sauce");
 const likeRoutes = require("../back/app/routes/like");
@@ -8,6 +9,7 @@ const likeRoutes = require("../back/app/routes/like");
 const app = express();
 app.use(express.json());
 
+//Allow requests from any origin, set headers and methods allowed for request
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -20,8 +22,8 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.use("/images", express.static(path.join(__dirname, "images")));
 
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/auth", userRoutes);
 app.get("/api/sauces", sauceRoutes);
 app.get("/api/sauces/:id", sauceRoutes);
