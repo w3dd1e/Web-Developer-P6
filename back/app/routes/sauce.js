@@ -6,6 +6,7 @@ const multer = require("../middleware/multer-config");
 
 const sauceCtrl = require("../controllers/sauce");
 
+//Authorization required to access these routes
 router.get("/api/sauces", auth, sauceCtrl.getAllSauce);
 router.post("/api/sauces", auth, multer, sauceCtrl.createSauce);
 router.get("/api/sauces/:id", auth, sauceCtrl.getOneSauce);
