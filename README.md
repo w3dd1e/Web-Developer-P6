@@ -1,5 +1,9 @@
 # HotTakes
 
+Project #6 Web Development - OpenClassrooms
+
+In this scenario, a hot sauce company, Piiquante, wants to create a social site for sharing your favorite hot sauces.  The front end was created with Angular.  I created the secure API using javascript and the NoSQL database using MongoDB. 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.4.
 
 ## Development server
